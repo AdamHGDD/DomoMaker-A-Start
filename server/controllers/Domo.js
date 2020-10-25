@@ -14,7 +14,8 @@ const makerPage = (req, res) => {
 		}
 
 		// Send the data to the page
-		return res.render('app', {domos: docs});
+		// Attach to csurf
+		return res.render('app', {csrfToken: req.csrfToken(), domos: docs});
 	})
 };
 
