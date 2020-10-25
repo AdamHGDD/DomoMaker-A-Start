@@ -67,13 +67,13 @@ app.use(bodyParser.urlencoded({
 app.use(session({
   key: 'sessionid',
   store: new RedisStore({
-  	client: redisClient,
+    client: redisClient,
   }),
   secret: 'Bippity Boppity',
   resave: true,
   saveUnitialized: true,
   cookie: {
-  	httpOnly: true,
+    httpOnly: true,
   }
 }));
 app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }));
