@@ -28,8 +28,8 @@ const DomoSchema = new mongoose.Schema({
 
   image: {
     type: String,
-    min: 0,
     required: true,
+    trim: true,
   },
 
   owner: {
