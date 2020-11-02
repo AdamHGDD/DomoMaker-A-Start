@@ -35,7 +35,7 @@ const makeDomo = (req, res) => {
 
   if(req.body.image)
   {
-  	img = req.body.image;
+    img = req.body.image;
   }
 
   // Create domo js object
