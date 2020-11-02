@@ -20,7 +20,7 @@ const handleDomoDelete = (e) => {
 
   $("#domoMessage").animate({width:'hide'},350);
 
-  if($("#domoName").val() == '') {
+  if($("#domoNameD").val() == '') {
     handleError("Name is required");
     return false;
   }
@@ -61,8 +61,8 @@ const DomoDel = (props) => {
       method="POST"
       className="domoDel"
     >
-      <label htmlFor="name">Name: </label>
-      <input id="domoName" type="text" name="name" placeholder="Domo Name" />
+      <label htmlFor="nameD">Name: </label>
+      <input id="domoNameD" type="text" name="nameD" placeholder="Domo Name" />
       <input type="hidden" name="_csrf" value={props.csrf} />
       <input className="makeDomoSubmit" type="submit" value="Delete Domo" />
     </form>
