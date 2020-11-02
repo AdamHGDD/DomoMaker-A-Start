@@ -74,7 +74,7 @@ const setup = function(csrf) {
   );
 
   ReactDOM.render(
-    <DomoList Domos={[]]} />, document.querySelector("#domos")
+    <DomoList Domos={[]} />, document.querySelector("#domos")
   );
 
   loadDomosFromServer();
