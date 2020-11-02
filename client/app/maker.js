@@ -1,4 +1,6 @@
 const handleDomo = (e) => {
+  console.log("handle domo");
+
   e.preventDefault();
 
   $("#domoMessage").animate({width:'hide'},350);
@@ -16,6 +18,8 @@ const handleDomo = (e) => {
 };
 
 const handleDomoDelete = (e) => {
+  console.log("handle domo delete");
+  
   e.preventDefault();
 
   $("#domoMessage").animate({width:'hide'},350);
@@ -24,6 +28,9 @@ const handleDomoDelete = (e) => {
     handleError("RAWR! Name is required");
     return false;
   }
+
+  console.log("domo delete action: "+$("#domoDel").attr("action"));
+  console.log("domo delete serialize: "+$("#domoDel").serialize());
 
   sendAjax('POST', $("#domoDel").attr("action"), $("#domoDel").serialize(), function() {
     loadDomosFromServer();
