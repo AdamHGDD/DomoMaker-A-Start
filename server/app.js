@@ -41,14 +41,14 @@ let redisURL = {
 };
 
 // My password for local use
-let redisPass = '47C1HMcAHQLC2OvZ5rHHl4sh9hXtlCZG'
+let redisPass = '47C1HMcAHQLC2OvZ5rHHl4sh9hXtlCZG';
 // Get heroku info if not local
-if(process.env.REDISCLOUD_URL) {
+if (process.env.REDISCLOUD_URL) {
   redisURL = url.parse(process.env.REDISCLOUD_URL);
   [, redisPass] = redisURL.auth.split(':');
 }
 // Start connection to redis database
-let redisClient = redis.createClient({
+const redisClient = redis.createClient({
   host: redisURL.hostname,
   port: redisURL.port,
   password: redisPass,
@@ -77,7 +77,7 @@ app.use(session({
   saveUnitialized: true,
   cookie: {
     httpOnly: true,
-  }
+  },
 }));
 app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -87,10 +87,10 @@ app.use(cookieParser());
 // Generates a unique token for each request and same session must match
 app.use(csrf());
 app.use((err, req, res, next) => {
-	if (err.code !== 'EBADCSRFTOKEN') return next(err);
+  if (err.code !== 'EBADCSRFTOKEN') return next(err);
 
-	console.log('Missing CSRF token');
-	return false;
+  console.log('Missing CSRF token');
+  return false;
 });
 
 // Attach to router

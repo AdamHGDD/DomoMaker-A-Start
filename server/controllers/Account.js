@@ -6,12 +6,7 @@ const { Account } = models;
 // Basic events
 const loginPage = (req, res) => {
   // Attach to csurf
-  res.render('login', {csrfToken: req.csrfToken()});
-};
-
-const signupPage = (req, res) => {
-  // Attach to csurf
-  res.render('signup', {csrfToken: req.csrfToken()});
+  res.render('login', { csrfToken: req.csrfToken() });
 };
 
 const logout = (req, res) => {
@@ -65,7 +60,7 @@ const signup = (request, response) => {
   if (req.body.pass !== req.body.pass2) {
     return res.status(400).json({ error: 'RAWR! Passwords do not match' });
   }
-  
+
   // Encrypt and attach
   return Account.AccountModel.generateHash(req.body.pass, (salt, hash) => {
     const accountData = {
@@ -99,9 +94,20 @@ const signup = (request, response) => {
   });
 };
 
+const getToken = (request, response) => {
+  const req = request;
+  const res = response;
+
+  const csrfJSON = {
+    csrfToken: req.csrfToken(),
+  };
+
+  res.json(csrfJSON);
+};
+
 // Exports
 module.exports.loginPage = loginPage;
 module.exports.login = login;
 module.exports.logout = logout;
-module.exports.signupPage = signupPage;
 module.exports.signup = signup;
+module.exports.getToken = getToken;
