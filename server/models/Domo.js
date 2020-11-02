@@ -69,8 +69,8 @@ DomoSchema.statics.deleteByName = (ownerId, nametag, callback) => {
 
   return DomoModel.deleteOne(search, function (err) {
     if (err) {
-      return res.status(400).json({error: 'An error occurred'});
       console.log("error on delete");
+      return err;
     }
   }).exec(callback);
 };
