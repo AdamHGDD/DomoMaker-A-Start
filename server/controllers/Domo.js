@@ -30,10 +30,19 @@ const makeDomo = (req, res) => {
   console.dir(req.session);
   console.log('done seeing req.session');
 
+  // Backup image
+  let img = "/assets/img/domoface.jpeg";
+
+  if(req.body.image)
+  {
+  	img = req.body.image;
+  }
+
   // Create domo js object
   const domoData = {
     name: req.body.name,
     age: req.body.age,
+    image: img,
     owner: req.session.account._id,
   };
 
