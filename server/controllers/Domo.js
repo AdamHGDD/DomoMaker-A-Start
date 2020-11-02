@@ -81,7 +81,7 @@ const deleteDomo = (req, res) => {
   console.log('done seeing req.session');
 
   // Delete domo js object
-  Domo.DomoModel.deleteByName(req.session.account._id, req.body.name);
+  return Domo.DomoModel.deleteByName(req.session.account._id, req.body.name);
 };
 
 const getDomos = (request, response) => {
