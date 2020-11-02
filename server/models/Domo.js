@@ -59,13 +59,20 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
   return DomoModel.find(search).select('name age image').lean().exec(callback);
 };
 
-DomoSchema.statics.deleteByName = (ownerId, nametag) => {
+DomoSchema.statics.deleteByName = (ownerId, nametag, callback) => {
   const search = {
     owner: convertId(ownerId),
     name: nametag
   };
 
-  return DomoModel.deleteOne(search);
+  console.log("delete by name: "+nametag);
+
+  return DomoModel.deleteOne(search, function (err) {
+    if (err) {
+      return res.status(400).json({error: 'An error occurred'});
+      console.log("error on delete");
+    }
+  }).exec(callback);
 };
 
 // Define model

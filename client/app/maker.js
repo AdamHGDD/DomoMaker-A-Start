@@ -103,6 +103,7 @@ const DomoList = function(props) {
 };
 
 const loadDomosFromServer = () => {
+  console.log("load domos from server");
   sendAjax('GET', '/getDomos', null, (data) => {
     ReactDOM.render(
       <DomoList domos={data.domos} />, document.querySelector("#domos")

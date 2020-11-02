@@ -81,7 +81,14 @@ const deleteDomo = (req, res) => {
   console.log('done seeing req.session');
 
   // Delete domo js object
-  return Domo.DomoModel.deleteByName(req.session.account._id, req.body.name);
+  Domo.DomoModel.deleteByName(req.session.account._id, req.body.name, (err) => {
+  	console.log("reached callback");
+    if(err) {
+      console.log(err);
+      return res.status(400).json({error: 'An error occurred'});
+    }
+    return res.status(200).json({ error: 'Delete successful' });
+  });
 };
 
 const getDomos = (request, response) => {
