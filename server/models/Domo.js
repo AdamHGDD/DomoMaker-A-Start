@@ -67,12 +67,14 @@ DomoSchema.statics.deleteByName = (ownerId, nametag, callback) => {
 
   console.log("delete by name: "+nametag);
 
-  return DomoModel.deleteOne(search, function (err) {
+  DomoModel.deleteOne(search, function (err) {
     if (err) {
       console.log("error on delete");
       return err;
     }
-  }).exec(callback);
+  });
+
+  return DomoModel.exec(callback);
 };
 
 // Define model
