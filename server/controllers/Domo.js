@@ -69,6 +69,21 @@ const makeDomo = (req, res) => {
   return domoPromise;
 };
 
+// Make a domo
+const deleteDomo = (req, res) => {
+  // Check for valid data
+  if (!req.body.name) {
+    return res.status(400).json({ error: 'Name is required' });
+  }
+
+  console.log('about to see req.session');
+  console.dir(req.session);
+  console.log('done seeing req.session');
+
+  // Delete domo js object
+  Domo.DomoModel.deleteByName(req.session.account._id, req.body.name);
+};
+
 const getDomos = (request, response) => {
 	const req = request;
 	const res = response;
@@ -87,3 +102,4 @@ const getDomos = (request, response) => {
 module.exports.makerPage = makerPage;
 module.exports.getDomos = getDomos;
 module.exports.make = makeDomo;
+module.exports.delete = deleteDomo;

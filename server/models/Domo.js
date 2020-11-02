@@ -59,6 +59,15 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
   return DomoModel.find(search).select('name age image').lean().exec(callback);
 };
 
+DomoSchema.statics.deleteByName = (ownerId, nametag) => {
+  const search = {
+    owner: convertId(ownerId),
+    name: nametag
+  };
+
+  return DomoModel.deleteOne(search);
+};
+
 // Define model
 DomoModel = mongoose.model('Domo', DomoSchema);
 

@@ -15,6 +15,23 @@ const handleDomo = (e) => {
   return false;
 };
 
+const handleDomoDelete = (e) => {
+  e.preventDefault();
+
+  $("#domoMessage").animate({width:'hide'},350);
+
+  if($("#domoName").val() == '') {
+    handleError("Name is required");
+    return false;
+  }
+
+  sendAjax('POST', $("#domoDel").attr("action"), $("#domoDel").serialize(), function() {
+    loadDomosFromServer();
+  });
+
+  return false;
+};
+
 const DomoForm = (props) => {
   return (
     <form id="domoForm"
@@ -32,6 +49,22 @@ const DomoForm = (props) => {
       <input id="image" type="text" name="image" placeholder="Domo Image"/>
       <input type="hidden" name="_csrf" value={props.csrf} />
       <input className="makeDomoSubmit" type="submit" value="Make Domo" />
+    </form>
+  );
+};
+const DomoForm = (props) => {
+  return (
+    <form id="domoDel"
+      onSubmit={handleDomoDelete}
+      name="domoDel"
+      action="/delete"
+      method="POST"
+      className="domoDel"
+    >
+      <label htmlFor="name">Name: </label>
+      <input id="domoName" type="text" name="name" placeholder="Domo Name" />
+      <input type="hidden" name="_csrf" value={props.csrf} />
+      <input className="makeDomoSubmit" type="submit" value="Delete Domo" />
     </form>
   );
 };
