@@ -109,6 +109,10 @@ const setup = function(csrf) {
   );
 
   ReactDOM.render(
+    <DomoDel csrf={csrf} />, document.querySelector("#deleteDomo")
+  );
+
+  ReactDOM.render(
     <DomoList domos={[]} />, document.querySelector("#domos")
   );
 
