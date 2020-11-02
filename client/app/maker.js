@@ -52,7 +52,7 @@ const DomoForm = (props) => {
     </form>
   );
 };
-const DomoForm = (props) => {
+const DomoDel = (props) => {
   return (
     <form id="domoDel"
       onSubmit={handleDomoDelete}
