@@ -26,6 +26,7 @@ const handleSignup = (e) => {
   }
 
   if($("#pass").val() !== $("#pass2").val()) {
+    console.log("pass1: "+$("#pass").val()+", 2:"+$("#pass2").val());
     handleError("RAWR! Passwords do not match");
     return false;
   }
