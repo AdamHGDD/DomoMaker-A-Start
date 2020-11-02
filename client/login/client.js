@@ -26,7 +26,6 @@ const handleSignup = (e) => {
   }
 
   if($("#pass").val() !== $("#pass2").val()) {
-    console.log("pass1: "+$("#pass").val()+", 2:"+$("#pass2").val());
     handleError("RAWR! Passwords do not match");
     return false;
   }
@@ -68,8 +67,8 @@ const SignupWindow = (props) => {
       <input id="user" type="text" name="username" placeholder="username"/>
       <label htmlFor="pass">Password: </label>
       <input id="pass" type="password" name="pass" placeholder="password"/>
-      <label htmlFor="pass">Password: </label>
-      <input id="pass2" type="password" name="pass" placeholder="password"/>
+      <label htmlFor="pass2">Password: </label>
+      <input id="pass2" type="password" name="pass2" placeholder="password"/>
       <input type="hidden" name="_csrf" value={props.csrf}/>
       <input className="formSubmit" type="submit" value="Sign Up" />
     </form>

@@ -8,6 +8,7 @@ const mid = require('./middleware');
 // If on any other page make sure that they aren't supposed to be logged in
 const router = (app) => {
   app.get('/getToken', mid.requiresSecure, controllers.Account.getToken);
+  app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);
   app.get('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
   app.post('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.login);
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
